@@ -1,4 +1,5 @@
 import { CityCard } from "@/src/components/CityCard";
+import { Icon } from "@/src/components/Icon";
 import { Screen } from "@/src/components/Screen";
 import { cityPreviewList } from "@/src/data/cities";
 import { CityPreview } from "@/src/types";
@@ -12,6 +13,8 @@ export default function HomeScreen() {
   }
   return (
     <Screen>
+      <Icon name="Adventure" color="primary" />
+      <Icon name="Beach" color="primary" />
       <FlatList data={cityPreviewList} renderItem={renderItem} />
     </Screen>
   );
