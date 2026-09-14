@@ -35,7 +35,11 @@ export function CityFilter({
               key={category.id}
               category={category}
               active={category.id === selectedCategoryId}
-              onPress={() => onChangeSelectedCategoryId(category.id)}
+              onPress={() =>
+                onChangeSelectedCategoryId(
+                  category.id === selectedCategoryId ? null : category.id,
+                )
+              }
             />
           ))}
         </Box>
