@@ -19,7 +19,11 @@ export function CityCard({ cityPreview, style }: CityCardProps) {
       <Pressable>
         <ImageBackground
           style={[{ width: "100%", height: 280 }, style]}
-          source={cityPreview.coverImage}
+          source={
+            typeof cityPreview.coverImage === "number"
+              ? cityPreview.coverImage
+              : { uri: cityPreview.coverImage }
+          }
           imageStyle={{ borderRadius: borderRadii.default }}
         >
           <BlackOpacity />
