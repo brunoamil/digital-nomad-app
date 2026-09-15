@@ -5,7 +5,7 @@ import { SearchInput } from "../components/SearchInput";
 import { Category } from "../types";
 
 type CityFilterProps = {
-  categories: Category[];
+  categories?: Category[];
   cityName: string;
   onChangeCityName: (cityName: string) => void;
   selectedCategoryId: string | null;
