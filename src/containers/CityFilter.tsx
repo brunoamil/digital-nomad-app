@@ -28,7 +28,11 @@ export function CityFilter({
           placeholder="Qual seu próximo destino"
         />
       </Box>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        bounces={false}
+      >
         <Box mt="s16" flexDirection="row" gap="s8" paddingHorizontal="padding">
           {categories?.map((category) => (
             <CategoryPill

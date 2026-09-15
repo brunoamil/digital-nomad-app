@@ -1,6 +1,8 @@
-import { ImageBackground } from "react-native";
+import { Link } from "expo-router";
+import { ImageBackground, Pressable } from "react-native";
 import { useAppTheme } from "../theme/useAppTheme";
 import { CityPreview } from "../types";
+import { BlackOpacity } from "./BlackOpacity";
 import { Box } from "./Box";
 import { Icon } from "./Icon";
 import { Text } from "./Text";
@@ -12,27 +14,25 @@ export function CityCard({ cityPreview }: CityCardProps) {
   const { borderRadii } = useAppTheme();
 
   return (
-    <ImageBackground
-      style={{ width: "100%", height: 280 }}
-      source={cityPreview.coverImage}
-      imageStyle={{ borderRadius: borderRadii.default }}
-    >
-      <Box
-        position="absolute"
-        width="100%"
-        height="100%"
-        backgroundColor="midnightBlack"
-        opacity={0.25}
-      />
-      <Box flex={1} padding="s24" justifyContent="space-between">
-        <Box alignSelf="flex-end">
-          <Icon name="Favorite-outline" color="text" />
-        </Box>
-        <Box>
-          <Text variant="title22">{cityPreview.name}</Text>
-          <Text variant="text16">{cityPreview.country}</Text>
-        </Box>
-      </Box>
-    </ImageBackground>
+    <Link href={`/city-details/${cityPreview.id}`} asChild>
+      <Pressable>
+        <ImageBackground
+          style={{ width: "100%", height: 280 }}
+          source={cityPreview.coverImage}
+          imageStyle={{ borderRadius: borderRadii.default }}
+        >
+          <BlackOpacity />
+          <Box flex={1} padding="s24" justifyContent="space-between">
+            <Box alignSelf="flex-end">
+              <Icon name="Favorite-outline" color="text" />
+            </Box>
+            <Box>
+              <Text variant="title22">{cityPreview.name}</Text>
+              <Text variant="text16">{cityPreview.country}</Text>
+            </Box>
+          </Box>
+        </ImageBackground>
+      </Pressable>
+    </Link>
   );
 }
