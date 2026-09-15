@@ -7,9 +7,9 @@ import { useRelatedCities } from "../data/useRelatedCities";
 import { useAppTheme } from "../theme/useAppTheme";
 import { City } from "../types";
 
-type Props = Pick<City, "relatedCitiesIds">;
+type Props = Pick<City, "id">;
 
-export function CityDetailsRelatedCities({ relatedCitiesIds }: Props) {
+export function CityDetailsRelatedCities({ id }: Props) {
   const { spacing } = useAppTheme();
   const { bottom } = useSafeAreaInsets();
   const { width } = useWindowDimensions();
@@ -17,7 +17,7 @@ export function CityDetailsRelatedCities({ relatedCitiesIds }: Props) {
   const cardWidth = width * 0.6;
   const cardHeight = cardWidth * 0.9;
 
-  const cities = useRelatedCities(relatedCitiesIds);
+  const { data: cities } = useRelatedCities(id);
 
   return (
     <Box style={{ paddingBottom: bottom }}>
@@ -32,7 +32,7 @@ export function CityDetailsRelatedCities({ relatedCitiesIds }: Props) {
           paddingHorizontal: spacing.padding,
         }}
       >
-        {cities.map((city) => (
+        {cities?.map((city) => (
           <CityCard
             key={city.id}
             cityPreview={city}

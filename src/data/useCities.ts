@@ -31,7 +31,6 @@ export function useCities(filters: CityFilter): UseCitiesReturn {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters.name, filters.categoryId]);
 
-  console.log("cities", cities);
   return {
     cities,
     isLoading,
