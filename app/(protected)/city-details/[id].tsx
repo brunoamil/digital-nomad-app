@@ -1,3 +1,4 @@
+import { Divider } from "@/src/components/Divider";
 import { Screen } from "@/src/components/Screen";
 import { Text } from "@/src/components/Text";
 import { CityDetailInfo } from "@/src/containers/CityDetailInfo";
@@ -27,9 +28,16 @@ export default function CityDetails() {
         coverImage={city?.coverImage}
         categories={city?.categories}
       />
-      <CityDetailInfo />
+      <CityDetailInfo
+        name={city?.name}
+        country={city?.country}
+        description={city?.description}
+      />
+      <Divider paddingHorizontal="padding" />
       <CityDetailsTouristAttactions />
+      <Divider paddingHorizontal="padding" />
       <CityDetailsMap />
+      <Divider paddingHorizontal="padding" />
       <CityDetailsRelatedCities />
     </Screen>
   );
