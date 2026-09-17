@@ -3,10 +3,11 @@ import { CityCard } from "@/src/components/CityCard";
 import { Screen } from "@/src/components/Screen";
 import { CityFilter } from "@/src/containers/CityFilter";
 import { useCategories } from "@/src/data/useCategories";
-import { useCities } from "@/src/data/useCities";
+import { CityPreview } from "@/src/domain/city/City";
+import { useCityFindAll } from "@/src/domain/city/operations/useCityFindAll";
 import { useDebounce } from "@/src/hooks/useDebounce";
+import { InMemoryCityRepo } from "@/src/infra/repositories/inMemory/inMemoryCityRepo";
 import { useAppTheme } from "@/src/theme/useAppTheme";
-import { CityPreview } from "@/src/types";
 import { useScrollToTop } from "@react-navigation/native";
 import { useRef, useState } from "react";
 import { ListRenderItemInfo } from "react-native";
@@ -23,10 +24,14 @@ export default function HomeScreen() {
     null,
   );
 
-  const { data: cities } = useCities({
-    name: debouncedCityName,
-    categoryId: selectedCategoryId,
-  });
+  const { data: cities } = useCityFindAll(
+    {
+      name: debouncedCityName,
+      categoryId: selectedCategoryId,
+    },
+    new InMemoryCityRepo(),
+  );
+
   const { data: categories } = useCategories();
 
   const flatListRef = useRef(null);
