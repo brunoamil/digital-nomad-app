@@ -6,7 +6,6 @@ import { useCategories } from "@/src/data/useCategories";
 import { CityPreview } from "@/src/domain/city/City";
 import { useCityFindAll } from "@/src/domain/city/operations/useCityFindAll";
 import { useDebounce } from "@/src/hooks/useDebounce";
-import { InMemoryCityRepo } from "@/src/infra/repositories/inMemory/inMemoryCityRepo";
 import { useAppTheme } from "@/src/theme/useAppTheme";
 import { useScrollToTop } from "@react-navigation/native";
 import { useRef, useState } from "react";
@@ -24,13 +23,10 @@ export default function HomeScreen() {
     null,
   );
 
-  const { data: cities } = useCityFindAll(
-    {
-      name: debouncedCityName,
-      categoryId: selectedCategoryId,
-    },
-    new InMemoryCityRepo(),
-  );
+  const { data: cities } = useCityFindAll({
+    name: debouncedCityName,
+    categoryId: selectedCategoryId,
+  });
 
   const { data: categories } = useCategories();
 
